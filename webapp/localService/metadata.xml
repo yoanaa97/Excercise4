@@ -1,0 +1,64 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZFILMS_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="Actors" sap:content-version="1">
+				<Key><PropertyRef Name="ActorsName"/></Key><Property Name="ActorsName" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Actor's Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Age" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Age" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="BitrhDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Birth Date"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Nationality" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Nationality"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="Movies" Relationship="ZFILMS_SRV.actors_name" FromRole="FromRole_actors_name" ToRole="ToRole_actors_name"/></EntityType>
+			<EntityType Name="Movies" sap:content-version="1">
+				<Key><PropertyRef Name="ActorsName"/><PropertyRef Name="MoviesName"/></Key><Property Name="ActorsName" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Actor's Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MoviesName" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Movie's Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ReleaseDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Release Date"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Genre" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Movie's Genre" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="Actors" Relationship="ZFILMS_SRV.actors_name" FromRole="ToRole_actors_name" ToRole="FromRole_actors_name"/></EntityType>
+			<EntityType Name="ZI_ACTORSMOVIESEXPOSUREType" sap:label="CDS View with exposure" sap:content-version="1">
+				<Key><PropertyRef Name="ActorsName"/></Key><Property Name="ActorsName" Type="Edm.String" Nullable="false" MaxLength="100" sap:display-format="UpperCase" sap:label="Actor's Name"/><Property Name="Age" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Age"/><Property Name="BirthDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Birth Date"/><Property Name="Nationality" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="Nationality"/><NavigationProperty Name="to_Movies" Relationship="ZFILMS_SRV.assoc_057F3AE15864FCF3C5766F09B13A2E42"
+					FromRole="FromRole_assoc_057F3AE15864FCF3C5766F09B13A2E42" ToRole="ToRole_assoc_057F3AE15864FCF3C5766F09B13A2E42"/></EntityType>
+			<EntityType Name="ZI_MOVIESType" sap:label="CDS View for Movies" sap:content-version="1">
+				<Key><PropertyRef Name="ActorsName"/><PropertyRef Name="MoviesName"/></Key><Property Name="ActorsName" Type="Edm.String" Nullable="false" MaxLength="100" sap:display-format="UpperCase" sap:label="Actor's Name"/><Property Name="MoviesName" Type="Edm.String" Nullable="false" MaxLength="100" sap:display-format="UpperCase" sap:label="Movie's Name"/><Property Name="ReleaseDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Release Date"/><Property Name="Genre" Type="Edm.String" MaxLength="50" sap:display-format="UpperCase" sap:label="Movie's Genre"/></EntityType>
+			<ComplexType Name="ActorCheck"><Property Name="Exists" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="User Exists" sap:creatable="false" sap:updatable="false"
+				sap:sortable="false" sap:filterable="false"/></ComplexType>
+			<Association Name="actors_name" sap:content-version="1"><End Type="ZFILMS_SRV.Actors" Multiplicity="1" Role="FromRole_actors_name"/><End Type="ZFILMS_SRV.Movies" Multiplicity="*" Role="ToRole_actors_name"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_actors_name"><PropertyRef Name="ActorsName"/></Principal>
+					<Dependent Role="ToRole_actors_name"><PropertyRef Name="ActorsName"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_057F3AE15864FCF3C5766F09B13A2E42" sap:content-version="1"><End Type="ZFILMS_SRV.ZI_ACTORSMOVIESEXPOSUREType" Multiplicity="1" Role="FromRole_assoc_057F3AE15864FCF3C5766F09B13A2E42"/><End Type="ZFILMS_SRV.ZI_MOVIESType" Multiplicity="*" Role="ToRole_assoc_057F3AE15864FCF3C5766F09B13A2E42"/></Association>
+			<EntityContainer Name="ZFILMS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ZI_ACTORSMOVIESEXPOSURE" EntityType="ZFILMS_SRV.ZI_ACTORSMOVIESEXPOSUREType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZI_MOVIES" EntityType="ZFILMS_SRV.ZI_MOVIESType" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:content-version="1"/><EntitySet Name="ActorsSet" EntityType="ZFILMS_SRV.Actors" sap:searchable="true" sap:content-version="1"/><EntitySet Name="MoviesSet" EntityType="ZFILMS_SRV.Movies" sap:searchable="true" sap:content-version="1"/>
+				<AssociationSet Name="assoc_057F3AE15864FCF3C5766F09B13A2E42" Association="ZFILMS_SRV.assoc_057F3AE15864FCF3C5766F09B13A2E42"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZI_ACTORSMOVIESEXPOSURE" Role="FromRole_assoc_057F3AE15864FCF3C5766F09B13A2E42"/><End EntitySet="ZI_MOVIES" Role="ToRole_assoc_057F3AE15864FCF3C5766F09B13A2E42"/></AssociationSet>
+				<AssociationSet Name="actors_nameSet" Association="ZFILMS_SRV.actors_name" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:content-version="1"><End EntitySet="ActorsSet" Role="FromRole_actors_name"/><End EntitySet="MoviesSet" Role="ToRole_actors_name"/></AssociationSet>
+				<FunctionImport Name="CheckActor" ReturnType="ZFILMS_SRV.ActorCheck" m:HttpMethod="POST" sap:action-for="ZFILMS_SRV.Actors"><Parameter Name="ZACTORSNAME_YM" Type="Edm.String" Mode="In"/></FunctionImport>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZFILMS_SRV.ZFILMS_SRV_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZFILMS_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZFILMS_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

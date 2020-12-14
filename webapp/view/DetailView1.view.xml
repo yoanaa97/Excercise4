@@ -1,0 +1,37 @@
+<mvc:View controllerName="home.kpmg.exercise4.controller.DetailsView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="DetailView1" title="DETAILS VIEW FOR MOVIES" titleAlignment="Center">
+					<Bar id="bar0" translucent="false" design="Header">
+						<contentLeft>
+							<Button id="backBtn" text="Back" width="100px" type="Accept" press=".onNavBack"/>
+						</contentLeft>
+					</Bar>
+					<Table>
+						<columns>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+								<Text text="Movie's Name"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+								<Text text="Actor's Name"/>
+							</Column>
+							<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+								<Text text="Genre"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<ObjectIdentifier title="{actorsModel>MoviesName}"/>
+									<Text text="{actorsModel>ActorsName}"/>
+									<Text text="{actorsModel>Genre}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

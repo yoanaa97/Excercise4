@@ -1,0 +1,60 @@
+<mvc:View controllerName="home.kpmg.exercise4.controller.MasterView1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="MASTER VIEW" titleAlignment="Center">
+					<content>
+						<VBox xmlns="sap.m" id="vboxid">
+							<items>
+								<HBox xmlns="sap.m">
+									<items>
+										<Table xmlns="sap.m" items="{ path: 'actorsModel>/ActorsSet' }">
+											<columns>
+												<Column xmlns="sap.m">
+													<header>
+														<Text xmlns="sap.m" text="ACTORS"></Text>
+													</header>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem type="Navigation" press=".onListItemPress">
+													<cells>
+														<ObjectIdentifier title="{actorsModel>ActorsName}"/>
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+									</items>
+								</HBox>
+							</items>
+						</VBox>
+						<VBox xmlns="sap.m" id="vboxid1">
+							<items>
+								<HBox xmlns="sap.m">
+									<items>
+										<Table xmlns="sap.m" items="{ path: 'actorsModel>/MoviesSet' }">
+											<columns>
+												<Column xmlns="sap.m">
+													<header>
+														<Text xmlns="sap.m" text="MOVIES"></Text>
+													</header>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem type="Navigation" press=".onListItemPressM">
+													<cells>
+														<ObjectIdentifier title="{actorsModel>MoviesName}"/>
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+									</items>
+								</HBox>
+							</items>
+						</VBox>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
